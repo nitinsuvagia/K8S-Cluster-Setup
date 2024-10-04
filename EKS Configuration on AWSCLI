@@ -1,0 +1,41 @@
+#SETUP EKS ACCESS (Local Machine Setup using Terminal)
+
+#Installing & Configuration AWS CLI
+
+URL: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+If you have sudo permissions, you can install the AWS CLI for all users on the computer. 
+We provide the steps in one easy to copy and paste group. See the descriptions of each line 
+in the following steps.
+
+
+$ curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+$ sudo installer -pkg AWSCLIV2.pkg -target /
+
+# aws --version
+
+#Configure AWS CLI
+export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+export AWS_DEFAULT_REGION=us-west-2
+
+Setting the environment variable changes the value used until the end of your shell session, 
+or until you set the variable to a different value. You can make the variables persistent across 
+future sessions by setting them in your shell's startup script.
+
+#Configuration KUBECTL to access EKS Cluster
+
+Describe actively running EKS addon in your Amazon EKS cluster
+
+The following describe-cluster example actively running EKS addon in your Amazon EKS cluster.
+
+aws eks describe-cluster --cluster-name my-eks-cluster-name --query cluster.status
+
+--query is add-on commands to get exact value
+
+The following update-kubeconfig example configures your kubectl by creating or updating the kubeconfig 
+so that you can connect to an Amazon EKS Cluster named my-eks-cluster.
+
+aws eks update-kubeconfig --name my-eks-cluster-name
+
+
